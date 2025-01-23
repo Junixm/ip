@@ -31,12 +31,23 @@ public class TaskManager {
                 case "event":
                     addEventTask(input);
                     break;
+                case "delete":
+                    deleteTask(input);
+                    break;
                 default:
                     System.out.println("I'm sorry, but I don't know what that means :-(");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void deleteTask(String input) {
+        Task task = getTask(input);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + task);
+        tasks.remove(task);
+        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
     private void addTask(Task task) {
