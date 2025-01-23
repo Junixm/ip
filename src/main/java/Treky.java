@@ -10,6 +10,9 @@ public class Treky {
         try (Scanner sc = new Scanner(System.in)) {
             hello();
             while (true) {
+                if (!sc.hasNextLine()) {
+                    return;
+                }
                 String input = sc.nextLine();
                 System.out.println(lineSpacer);
 
