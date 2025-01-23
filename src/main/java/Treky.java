@@ -18,13 +18,24 @@ public class Treky {
                     case "bye":
                         goodbye();
                         return;
+                    case "list":
+                        listTask();
+                        break;
                     default:
                         addTask(input);
                         break;
                 }
             }
         }
+    }
 
+    private static void listTask() {
+        String list = IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
+                .reduce((x, y) -> x + "\n" + y)
+                .orElse("No tasks added yet!");
+
+        echo(list);
     }
 
     private static void addTask(String input) {
