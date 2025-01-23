@@ -1,10 +1,27 @@
 public class Treky {
+
+    private final static String lineSpacer = "____________________________________________________________";
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        hello();
+        goodbye();
+    }
+    private static void hello() {
+        String logo = """
+              _____        _       \s
+             |_   _| _ ___| |___  _\s
+               | || '_/ -_) / / || |
+               |_||_| \\___|_\\_\\\\_, |
+                               |__/\s
+            """;
+
+        System.out.println(lineSpacer);
+        System.out.println(logo);
+        System.out.println("Hello! I'm Treky\nWhat can I do for you?");
+        System.out.println(lineSpacer);
+    }
+
+    private static void goodbye() {
+        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(lineSpacer);
     }
 }
