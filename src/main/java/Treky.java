@@ -18,13 +18,10 @@ public class Treky {
                         goodbye();
                         return;
                     case "":
-                        System.out.println("You didn't enter anything!\n How can I help you?\n");
-                        break;
-                    case "list":
-                        taskManager.listTasks();
+                        System.out.println("You didn't enter anything!\nHow can I help you?");
                         break;
                     default:
-                        taskManager.addTask(input);
+                        taskManager.executeTask(input);
                         break;
                 }
 
