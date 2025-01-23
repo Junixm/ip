@@ -1,52 +1,36 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 public class Treky {
 
     private final static String lineSpacer = "____________________________________________________________";
-    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
+        TaskManager taskManager = new TaskManager();
 
         try (Scanner sc = new Scanner(System.in)) {
             hello();
             while (true) {
                 String input = sc.nextLine();
                 System.out.println(lineSpacer);
+
                 switch (input) {
                     case "bye":
                         goodbye();
                         return;
+                    case "":
+                        System.out.println("You didn't enter anything!\n How can I help you?\n");
+                        break;
                     case "list":
-                        listTask();
+                        taskManager.listTasks();
                         break;
                     default:
-                        addTask(input);
+                        taskManager.addTask(input);
                         break;
                 }
+
+                System.out.println(lineSpacer);
             }
         }
-    }
-
-    private static void listTask() {
-        String list = IntStream.range(0, tasks.size())
-                .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
-                .reduce((x, y) -> x + "\n" + y)
-                .orElse("No tasks added yet!");
-
-        echo(list);
-    }
-
-    private static void addTask(String input) {
-        Task task = new Task(input);
-        tasks.add(task);
-        echo("added: " + task);
-    }
-
-    private static void echo(String input) {
-        System.out.println(input);
-        System.out.println(lineSpacer);
     }
 
     private static void goodbye() {
