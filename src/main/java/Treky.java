@@ -1,41 +1,46 @@
 import java.util.Scanner;
 
 public class Treky {
-
-    private final static String lineSpacer = "____________________________________________________________";
+    static final String LINE_SEPARATOR = "____________________________________________________________";
 
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
+        CommandHandler commandHandler = new CommandHandler(taskManager);
+        Scanner sc = new Scanner(System.in);
 
-        try (Scanner sc = new Scanner(System.in)) {
-            hello();
-            while (true) {
-                if (!sc.hasNextLine()) {
-                    return;
-                }
-                String input = sc.nextLine();
-                System.out.println(lineSpacer);
+        hello();
 
-                switch (input) {
-                    case "bye":
-                        goodbye();
-                        return;
-                    case "":
-                        System.out.println("You didn't enter anything!\nHow can I help you?");
-                        break;
-                    default:
-                        taskManager.executeTask(input);
-                        break;
-                }
+        while (true) {
+            System.out.print("> ");
 
-                System.out.println(lineSpacer);
+            if (!sc.hasNextLine()) {
+                break;
             }
+            String input = sc.nextLine();
+
+            System.out.println(LINE_SEPARATOR);
+
+            if (input.equalsIgnoreCase("bye")) {
+                goodbye();
+                break;
+            }
+
+            if (input.isEmpty()) {
+                System.out.println("You didn't enter anything!\nHow can I help you?");
+            } else {
+                String[] parts = input.split(" ", 2);
+                String command = parts[0];
+                String arguments = (parts.length > 1) ? parts[1] : "";
+                commandHandler.executeCommand(command, arguments);
+            }
+
+            System.out.println(LINE_SEPARATOR);
         }
     }
 
     private static void goodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(lineSpacer);
+        System.out.println("Goodbye! Have a great day!");
+        System.out.println(LINE_SEPARATOR);
     }
 
     private static void hello() {
@@ -47,9 +52,9 @@ public class Treky {
                                |__/\s
             """;
 
-        System.out.println(lineSpacer);
+        System.out.println(LINE_SEPARATOR);
         System.out.println(logo);
         System.out.println("Hello! I'm Treky\nWhat can I do for you?");
-        System.out.println(lineSpacer);
+        System.out.println(LINE_SEPARATOR);
     }
 }
