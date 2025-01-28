@@ -9,6 +9,14 @@ public class TaskManager {
         this.tasks = new ArrayList<>();
     }
 
+    public TaskManager(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    protected ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
     protected void addTask(Task task) {
         tasks.add(task);
         System.out.println("Got it. I've added this task:");

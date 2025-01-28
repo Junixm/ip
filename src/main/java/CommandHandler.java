@@ -1,8 +1,10 @@
 public class CommandHandler {
     private final TaskManager taskManager;
+    private final Storage storage;
 
-    public CommandHandler(TaskManager taskManager) {
+    public CommandHandler(TaskManager taskManager, Storage storage) {
         this.taskManager = taskManager;
+        this.storage = storage;
     }
 
     public void executeCommand(String command, String description) {
@@ -43,6 +45,7 @@ public class CommandHandler {
         }
         Task task = new Todo(description);
         taskManager.addTask(task);
+        storage.addLine(task.toFileString());
     }
 
     private void addDeadlineTask(String description) throws TrekyException {
@@ -55,6 +58,7 @@ public class CommandHandler {
         }
         Task task = new Deadline(parts[0], parts[1]);
         taskManager.addTask(task);
+        storage.addLine(task.toFileString());
     }
 
     private void addEventTask(String description) throws TrekyException {
@@ -67,6 +71,7 @@ public class CommandHandler {
         }
         Task task = new Event(parts[0], parts[1], parts[2]);
         taskManager.addTask(task);
+        storage.addLine(task.toFileString());
     }
 
     private void setMarkTask(String description, boolean isDone) throws TrekyException {
@@ -76,6 +81,7 @@ public class CommandHandler {
         try {
             int index = Integer.parseInt(description);
             taskManager.markTask(index - 1, isDone);
+            storage.updateFile(taskManager.getTasks());
         } catch (NumberFormatException e) {
             throw new TrekyException("Task number must be a number!");
         } catch (IndexOutOfBoundsException e) {
@@ -92,6 +98,7 @@ public class CommandHandler {
         try {
             int index = Integer.parseInt(description);
             taskManager.deleteTask(index - 1);
+            storage.updateFile(taskManager.getTasks());
         } catch (NumberFormatException e) {
             throw new TrekyException("Task number must be a number!");
         } catch (IndexOutOfBoundsException e) {
