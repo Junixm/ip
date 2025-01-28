@@ -1,5 +1,4 @@
 public class Task {
-
     private final String description;
     private boolean isDone;
 
@@ -8,20 +7,20 @@ public class Task {
         this.isDone = false;
     }
 
-    protected void mark() {
+    public void mark() {
         this.isDone = true;
     }
 
-    protected void unmark() {
+    public void unmark() {
         this.isDone = false;
     }
 
     private String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return getStatusIcon() + " " + description;
     }
 }
