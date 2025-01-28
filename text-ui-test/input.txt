@@ -1,4 +1,3 @@
-list
 todo read book
 mark 1
 deadline return book /by June 6th
@@ -9,3 +8,4 @@ mark 4
 todo borrow book
 list
 delete 3
+bye
