@@ -8,10 +8,9 @@ public class CommandHandler {
         this.storage = storage;
     }
 
-    public void executeCommand(String input) {
+    public void executeCommand(String input) throws TrekyException {
         if (input.isEmpty()) {
-            System.out.println("You didn't enter anything!\nHow can I help you?");
-            return;
+            throw new TrekyException("You didn't enter anything!\nHow can I help you?");
         }
         String[] parts = input.split(" ", 2);
         String command = parts[0];
@@ -19,38 +18,34 @@ public class CommandHandler {
         execute(command, arguments);
     }
 
-    public void execute(String command, String description) {
-        try {
-            switch (command.toLowerCase()) {
-            case "bye":
-                isExit = true;
-                break;
-            case "todo":
-                addTask(description);
-                break;
-            case "deadline":
-                addDeadlineTask(description);
-                break;
-            case "event":
-                addEventTask(description);
-                break;
-            case "list":
-                taskManager.listTasks();
-                break;
-            case "mark":
-                setMarkTask(description, true);
-                break;
-            case "unmark":
-                setMarkTask(description, false);
-                break;
-            case "delete":
-                deleteTask(description);
-                break;
-            default:
-                throw new IllegalArgumentException("I'm sorry, but I don't know what that means :-(");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public void execute(String command, String description) throws TrekyException {
+        switch (command.toLowerCase()) {
+        case "bye":
+            isExit = true;
+            break;
+        case "todo":
+            addTask(description);
+            break;
+        case "deadline":
+            addDeadlineTask(description);
+            break;
+        case "event":
+            addEventTask(description);
+            break;
+        case "list":
+            taskManager.listTasks();
+            break;
+        case "mark":
+            setMarkTask(description, true);
+            break;
+        case "unmark":
+            setMarkTask(description, false);
+            break;
+        case "delete":
+            deleteTask(description);
+            break;
+        default:
+            throw new TrekyException("I'm sorry, but I don't know what that means :-(");
         }
     }
 
