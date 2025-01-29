@@ -5,10 +5,6 @@ public class TaskManager {
 
     private final ArrayList<Task> tasks;
 
-    public TaskManager() {
-        this.tasks = new ArrayList<>();
-    }
-
     public TaskManager(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
