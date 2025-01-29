@@ -1,3 +1,5 @@
+package treky;
+
 import java.util.Scanner;
 
 public class Ui {

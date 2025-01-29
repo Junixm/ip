@@ -1,3 +1,10 @@
+package treky;
+
+import treky.command.CommandHandler;
+import treky.command.Storage;
+import treky.command.TaskManager;
+import treky.TrekyException;
+
 public class Treky {
     private Ui ui;
     private CommandHandler commandHandler;
