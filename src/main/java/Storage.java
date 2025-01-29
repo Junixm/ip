@@ -2,6 +2,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -61,13 +63,24 @@ public class Storage {
                 if (parts.length != 4) {
                     throw new IllegalArgumentException("Invalid deadline format.");
                 }
-                yield new Deadline(description, parts[3], isDone);
+                try {
+                    LocalDate date = LocalDate.parse(parts[3]);
+                    yield new Deadline(description, date, isDone);
+                } catch (DateTimeParseException e) {
+                    throw new IllegalArgumentException("Invalid date format.");
+                }
             }
             case "E" -> {
                 if (parts.length != 5) {
                     throw new IllegalArgumentException("Invalid event format.");
                 }
-                yield new Event(description, parts[3], parts[4], isDone);
+                try {
+                    LocalDate dateFrom = LocalDate.parse(parts[3]);
+                    LocalDate dateTo = LocalDate.parse(parts[4]);
+                    yield new Event(description, dateFrom, dateTo, isDone);
+                } catch (DateTimeParseException e) {
+                    throw new IllegalArgumentException("Invalid date format.");
+                }
             }
             default -> throw new IllegalArgumentException("Unknown task type.");
         };
