@@ -9,12 +9,11 @@ import java.io.FileWriter;
 public class Storage {
     private final Path filePath;
 
-    public Storage(String filePath) throws TrekyException {
+    public Storage(String filePath) {
         this.filePath = Paths.get(filePath);
-        createFileIfNotExists();
     }
 
-    private void createFileIfNotExists() throws TrekyException {
+    public void initStorage() throws TrekyException {
         File file = filePath.toFile();
         if (!file.exists()) {
             try {
@@ -27,6 +26,7 @@ public class Storage {
     }
 
     public ArrayList<Task> loadTasks() throws TrekyException {
+        initStorage();
         ArrayList<Task> tasks = new ArrayList<>();
         try (Scanner sc = new Scanner(filePath)) {
             while (sc.hasNextLine()) {
