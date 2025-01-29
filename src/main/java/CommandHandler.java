@@ -1,15 +1,30 @@
 public class CommandHandler {
     private final TaskManager taskManager;
     private final Storage storage;
+    private static boolean isExit = false;
 
     public CommandHandler(TaskManager taskManager, Storage storage) {
         this.taskManager = taskManager;
         this.storage = storage;
     }
 
-    public void executeCommand(String command, String description) {
+    public void executeCommand(String input) {
+        if (input.isEmpty()) {
+            System.out.println("You didn't enter anything!\nHow can I help you?");
+            return;
+        }
+        String[] parts = input.split(" ", 2);
+        String command = parts[0];
+        String arguments = (parts.length > 1) ? parts[1] : "";
+        execute(command, arguments);
+    }
+
+    public void execute(String command, String description) {
         try {
             switch (command.toLowerCase()) {
+            case "bye":
+                isExit = true;
+                break;
             case "todo":
                 addTask(description);
                 break;
@@ -106,5 +121,9 @@ public class CommandHandler {
         } catch (Exception e) {
             throw new TrekyException(e.getMessage());
         }
+    }
+
+    public boolean isExit() {
+        return isExit;
     }
 }
