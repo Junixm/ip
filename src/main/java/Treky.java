@@ -4,8 +4,8 @@ public class Treky {
 
     public Treky(String filePath) {
         this.ui = new Ui();
-        Storage storage = new Storage(filePath);
         try {
+            Storage storage = new Storage(filePath);
             TaskManager taskManager = new TaskManager(storage.loadTasks());
             this.commandHandler = new CommandHandler(taskManager, storage);
         } catch (TrekyException e) {
