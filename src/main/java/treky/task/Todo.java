@@ -16,7 +16,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String toFileString() {
-        return "T | " + super.toFileString();
+    public String toSaveString() {
+        return "T | " + super.toSaveString();
     }
 }

@@ -26,8 +26,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String toFileString() {
-        return "E | " + super.toFileString() + " | " + from.format(DATE_PRINT_FORMATTER) +
+    public String toSaveString() {
+        return "E | " + super.toSaveString() + " | " + from.format(DATE_PRINT_FORMATTER) +
                 " | " + to.format(DATE_PRINT_FORMATTER);
     }
 }

@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String toFileString() {
-        return "D | " + super.toFileString() + " | " + date.format(DATE_PRINT_FORMATTER);
+    public String toSaveString() {
+        return "D | " + super.toSaveString() + " | " + date.format(DATE_PRINT_FORMATTER);
     }
 }
