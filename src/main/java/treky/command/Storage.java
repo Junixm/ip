@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.io.FileWriter;
 
@@ -34,21 +35,20 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> loadTasks() throws TrekyException {
-        initStorage();
-        ArrayList<Task> tasks = new ArrayList<>();
+    public List<Task> loadTasks() throws TrekyException {
+        List<Task> taskList = new ArrayList<>();
         try (Scanner sc = new Scanner(filePath)) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 Task task = getTaskFromLine(line);
-                tasks.add(task);
+                taskList.add(task);
             }
         } catch (IOException e) {
             throw new TrekyException("Failed to load tasks from file.");
         } catch (IllegalArgumentException e) {
             throw new TrekyException("File is corrupted: " + e.getMessage());
         }
-        return tasks;
+        return taskList;
     }
 
     private Task getTaskFromLine(String line) {
@@ -101,11 +101,11 @@ public class Storage {
         }
     }
 
-    public void updateFile(ArrayList<Task> tasks) throws TrekyException {
+    public void updateFile(List<Task> taskList) throws TrekyException {
         try {
             new FileWriter(filePath.toString(), false).close();
-            for (Task task : tasks) {
-                addLine(task.toFileString());
+            for (Task task : taskList) {
+                addLine(task.toSaveString());
             }
         } catch (IOException e) {
             throw new TrekyException("Failed to write to file.");
