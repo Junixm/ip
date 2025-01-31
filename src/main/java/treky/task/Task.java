@@ -9,12 +9,20 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public void setMark(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
+    public boolean getDone() {
+        return isDone;
+    }
+
     private String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+        return (isDone ? "[X]" : "[ ]");
+    }
+
+    private String getStatusBinary() {
+        return (isDone ? "1" : "0");
     }
 
     @Override
@@ -22,7 +30,7 @@ public class Task {
         return getStatusIcon() + " " + description;
     }
 
-    public String toFileString() {
-        return (isDone ? "1" : "0") + " | " + description;
+    public String toSaveString() {
+        return getStatusBinary() + " | " + description;
     }
 }
