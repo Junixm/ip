@@ -1,58 +1,67 @@
 package treky.command;
 
 import treky.task.Task;
+import treky.task.Todo;
+import treky.task.Deadline;
+import treky.task.Event;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
+import java.util.List;
 
 public class TaskManager {
 
-    private final ArrayList<Task> tasks;
+    private final ArrayList<Task> taskList;
 
-    public TaskManager(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public TaskManager() {
+        this(new ArrayList<>());
     }
 
-    protected ArrayList<Task> getTasks() {
-        return tasks;
+    public TaskManager(List<Task> taskList) {
+        this.taskList = new ArrayList<>(taskList);
     }
 
-    protected void addTask(Task task) {
-        tasks.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    public List<Task> getTaskList() {
+        return taskList;
     }
 
-    protected void listTasks() {
-        String list = IntStream.range(0, tasks.size())
-                .mapToObj(i -> (i + 1) + ". " + tasks.get(i))
-                .reduce((x, y) -> x + "\n" + y)
-                .orElse("No tasks added yet!");
-
-        System.out.println("Here are the tasks in your list:\n" + list);
+    public int getTaskListSize() {
+        return taskList.size();
     }
 
-    protected void markTask(int index, boolean isDone) {
-        if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException();
+    private Task getTask(int index) {
+        if (index < 0 || index >= taskList.size()) {
+            throw new IndexOutOfBoundsException("Please provide a valid task number!");
         }
-        Task task = tasks.get(index);
-        task.setMark(isDone);
-        if (isDone) {
-            System.out.println("Nice! I've marked this task as done:\n  " + task);
-        } else {
-            System.out.println("OK, I've marked this task as not done yet:\n  " + task);
-        }
+        return taskList.get(index);
     }
 
-    protected void deleteTask(int index) {
-        if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException();
-        }
-        Task task = tasks.get(index);
-        tasks.remove(task);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+    public Task addTodoTask(String description) {
+        Task task = new Todo(description);
+        taskList.add(task);
+        return task;
+    }
+
+    public Task addDeadlineTask(String description, LocalDate by) {
+        Task task = new Deadline(description, by);
+        taskList.add(task);
+        return task;
+    }
+
+    public Task addEventTask(String description, LocalDate from, LocalDate to) {
+        Task task = new Event(description, from, to);
+        taskList.add(task);
+        return task;
+    }
+
+    public Task deleteTask(int number) throws IndexOutOfBoundsException {
+        Task task = getTask(number - 1);
+        taskList.remove(task);
+        return task;
+    }
+
+    public Task markTask(int number, boolean isDone) throws IndexOutOfBoundsException {
+        Task task = getTask(number - 1);
+        task.setDone(isDone);
+        return task;
     }
 }
