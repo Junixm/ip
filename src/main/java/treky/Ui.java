@@ -3,31 +3,30 @@ package treky;
 import java.util.Scanner;
 
 public class Ui {
-    private Scanner sc;
+    private final Scanner sc;
 
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
-    public String readCommand() throws TrekyException {
+    public String readInput() throws IllegalStateException {
         System.out.print("> ");
         if (!sc.hasNextLine()) {
-            throw new TrekyException("No input detected.");
+            throw new IllegalStateException("No more input available.");
         }
         return sc.nextLine();
     }
 
+    public void showResult(String message) {
+        showLine();
+        if (!message.equals("bye")) {
+            System.out.println(message);
+            showLine();
+        }
+    }
+
     public void showError(String message) {
         System.out.println("Error: " + message);
-    }
-
-    public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-
-    public void showGoodbye() {
-        sc.close();
-        System.out.println("Goodbye! Have a great day!");
         showLine();
     }
 
@@ -39,9 +38,19 @@ public class Ui {
                |_||_| \\___|_\\_\\\\_, |
                                |__/\s
             """;
-
-        showLine();
         System.out.println(logo);
+        showLine();
         System.out.println("Hello! I'm Treky\nWhat can I do for you?");
+        showLine();
+    }
+
+    public void showGoodbye() {
+        sc.close();
+        System.out.println("Goodbye! Have a great day!");
+        showLine();
+    }
+
+    private void showLine() {
+        System.out.println("____________________________________________________________");
     }
 }
