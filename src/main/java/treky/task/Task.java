@@ -33,6 +33,15 @@ public class Task {
         return isDone;
     }
 
+    /**
+     * Gets the Task description.
+     *
+     * @return Description of task.
+     */
+    public String getDescription() {
+        return description;
+    }
+
     private String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
