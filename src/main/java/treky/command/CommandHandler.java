@@ -1,26 +1,46 @@
 package treky.command;
 
-import treky.task.Task;
-import treky.TrekyException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+
+import treky.task.Task;
+import treky.TrekyException;
 
 public class CommandHandler {
     private final TaskManager taskManager;
     private final Storage storage;
     private boolean isExit;
 
+    /**
+     * Constructs a CommandHandler object with the specified TaskManager and Storage.
+     * Exit status is set to false by default.
+     *
+     * @param taskManager TaskManager object to manage tasks.
+     * @param storage Storage object to manage file operations.
+     */
     public CommandHandler(TaskManager taskManager, Storage storage) {
         this.taskManager = taskManager;
         this.storage = storage;
         this.isExit = false;
     }
 
+    /**
+     * Returns the exit status of the CommandHandler.
+     *
+     * @return true if the CommandHandler is set to exit, false otherwise.
+     */
     public boolean getExit() {
         return isExit;
     }
 
+    /**
+     * Parses the input string and executes the corresponding command.
+     *
+     * @param input input string to be parsed.
+     * @return result of the command execution.
+     * @throws TrekyException if the input is empty or the command is invalid.
+     */
     public String parse(String input) throws TrekyException {
         if (input.isEmpty()) {
             throw new TrekyException("You didn't enter anything!\nHow can I help you?");
@@ -31,7 +51,7 @@ public class CommandHandler {
         return execute(command, arguments);
     }
 
-    public String execute(String command, String description) throws TrekyException {
+    private String execute(String command, String description) throws TrekyException {
         return switch (command.toLowerCase()) {
         case "bye" -> setExit();
         case "todo" -> addTodo(description);
