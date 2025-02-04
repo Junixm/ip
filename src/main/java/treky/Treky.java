@@ -9,6 +9,11 @@ public class Treky {
     private CommandHandler commandHandler;
     private boolean isExit;
 
+    /**
+     * Constructs a Treky object.
+     *
+     * @param filePath The file path of the storage file.
+     */
     public Treky(String filePath) {
         this.ui = new Ui();
         this.isExit = false;
@@ -23,6 +28,7 @@ public class Treky {
         }
     }
 
+    /** Runs the Treky program.*/
     public void run() {
         if (!isExit) {
             ui.showWelcome();
@@ -43,6 +49,11 @@ public class Treky {
         ui.showGoodbye();
     }
 
+    /**
+     * The main method of the Treky program.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         new Treky("./data/tasks.txt").run();
     }
