@@ -1,10 +1,5 @@
 package treky.command;
 
-import treky.TrekyException;
-import treky.task.Task;
-import treky.task.Todo;
-import treky.task.Deadline;
-import treky.task.Event;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.File;
@@ -16,13 +11,29 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileWriter;
 
+import treky.TrekyException;
+import treky.task.Task;
+import treky.task.Todo;
+import treky.task.Deadline;
+import treky.task.Event;
+
 public class Storage {
     private final Path filePath;
 
+    /**
+     * Constructs a Storage object with the specified file path.
+     *
+     * @param filePath Path to the file to store tasks.
+     */
     public Storage(String filePath) {
         this.filePath = Paths.get(filePath);
     }
 
+    /**
+     * Initializes the storage file if it does not exist.
+     *
+     * @throws TrekyException If an error occurs while creating the file.
+     */
     public void initStorage() throws TrekyException {
         File file = filePath.toFile();
         if (!file.exists()) {
@@ -35,6 +46,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file.
+     *
+     * @return List of tasks loaded from the storage file.
+     * @throws TrekyException If an error occurs while loading tasks from the file.
+     */
     public List<Task> loadTasks() throws TrekyException {
         List<Task> taskList = new ArrayList<>();
         try (Scanner sc = new Scanner(filePath)) {
@@ -93,6 +110,12 @@ public class Storage {
         };
     }
 
+    /**
+     * Adds a line to the storage file.
+     *
+     * @param line Line to be added to the storage file.
+     * @throws TrekyException If an error occurs while writing to the file.
+     */
     public void addLine(String line) throws TrekyException {
         try (FileWriter writer = new FileWriter(filePath.toString(), true)) {
             writer.write(line + System.lineSeparator());
@@ -101,6 +124,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the storage file with the specified list of tasks.
+     *
+     * @param taskList List of tasks to be written to the storage file.
+     * @throws TrekyException If an error occurs while writing to the file.
+     */
     public void updateFile(List<Task> taskList) throws TrekyException {
         try {
             new FileWriter(filePath.toString(), false).close();
