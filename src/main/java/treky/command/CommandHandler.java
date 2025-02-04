@@ -72,10 +72,11 @@ public class CommandHandler {
     }
 
     private String findTask(String keyword) throws TrekyException {
-        if (keyword.isEmpty()) {
+        String trimmedKeyword = keyword.trim();
+        if (trimmedKeyword.isEmpty()) {
             throw new TrekyException("Format: find <keyword>");
         }
-        List<Task> tasks = taskManager.findTasks(keyword);
+        List<Task> tasks = taskManager.findTasks(trimmedKeyword);
         if (tasks.isEmpty()) {
             throw new TrekyException("No tasks found with the keyword: " + keyword);
         }
