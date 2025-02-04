@@ -61,6 +61,7 @@ public class CommandHandler {
         case "mark" -> markTask(description, true);
         case "unmark" -> markTask(description, false);
         case "delete" -> deleteTask(description);
+        case "find" -> findTask(description);
         default -> throw new TrekyException("I'm sorry, but I don't know what that means :-(");
         };
     }
@@ -68,6 +69,21 @@ public class CommandHandler {
     private String setExit() {
         isExit = true;
         return "bye";
+    }
+
+    private String findTask(String keyword) throws TrekyException {
+        if (keyword.isEmpty()) {
+            throw new TrekyException("Format: find <keyword>");
+        }
+        List<Task> tasks = taskManager.findTasks(keyword);
+        if (tasks.isEmpty()) {
+            throw new TrekyException("No tasks found with the keyword: " + keyword);
+        }
+        StringBuilder result = new StringBuilder("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append("\n").append(i + 1).append(". ").append(tasks.get(i));
+        }
+        return result.toString();
     }
 
     private String addResult(Task task) {
