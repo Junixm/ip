@@ -8,10 +8,24 @@ public class Deadline extends Task {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");
     private static final DateTimeFormatter DATE_PRINT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
+    /**
+     * Constructs a Deadline task object with a description and date.
+     * Task status is false by default.
+     *
+     * @param description Description of task.
+     * @param date        Date of task.
+     */
     public Deadline(String description, LocalDate date) {
         this(description, date, false);
     }
 
+    /**
+     * Constructs a Deadline task object with a description, date and status.
+     *
+     * @param description Description of task.
+     * @param date        Date of task.
+     * @param isDone      Status of task.
+     */
     public Deadline(String description, LocalDate date, boolean isDone) {
         super(description, isDone);
         this.date = date;
