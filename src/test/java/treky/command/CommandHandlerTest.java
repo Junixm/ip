@@ -33,22 +33,10 @@ public class CommandHandlerTest {
     }
 
     @Test
-    public void execute_defaultCase_exceptionThrown() {
-        CommandHandler commandHandler = new CommandHandler(null, null);
-
-        try {
-            commandHandler.execute("random", "");
-            fail();
-        } catch (TrekyException e) {
-            assertEquals("I'm sorry, but I don't know what that means :-(", e.getMessage());
-        }
-    }
-
-    @Test
-    public void execute_byeCommand_success() {
+    public void parse_byeCommand_success() {
         CommandHandler commandHandler = new CommandHandler(null, null);
         try {
-            assertEquals("bye", commandHandler.execute("bye", ""));
+            assertEquals("bye", commandHandler.parse("bye"));
         } catch (TrekyException e) {
             fail();
         }
