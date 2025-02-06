@@ -3,6 +3,9 @@ package treky.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event task in the task list.
+ */
 public class Event extends Task {
     private final LocalDate from;
     private final LocalDate to;
@@ -37,13 +40,13 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from.format(DATE_FORMATTER) +
-                " to: " + to.format(DATE_FORMATTER) + ")";
+        return "[E]" + super.toString() + " (from: " + from.format(DATE_FORMATTER)
+                + " to: " + to.format(DATE_FORMATTER) + ")";
     }
 
     @Override
     public String toSaveString() {
-        return "E | " + super.toSaveString() + " | " + from.format(DATE_PRINT_FORMATTER) +
-                " | " + to.format(DATE_PRINT_FORMATTER);
+        return "E | " + super.toSaveString() + " | " + from.format(DATE_PRINT_FORMATTER)
+                + " | " + to.format(DATE_PRINT_FORMATTER);
     }
 }

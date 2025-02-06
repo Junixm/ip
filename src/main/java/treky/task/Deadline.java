@@ -3,6 +3,9 @@ package treky.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline task in the task list.
+ */
 public class Deadline extends Task {
     private final LocalDate date;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM d yyyy");

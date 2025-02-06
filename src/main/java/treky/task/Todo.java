@@ -1,5 +1,8 @@
 package treky.task;
 
+/**
+ * Represents a Todo task in the task list.
+ */
 public class Todo extends Task {
 
     /**
