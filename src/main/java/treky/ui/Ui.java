@@ -4,6 +4,17 @@ import java.util.Scanner;
 
 public class Ui {
     private final Scanner sc;
+    private static final String DIVIDER = "____________________________________________________________";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Treky\nWhat can I do for you?";
+    private static final String GOODBYE_MESSAGE = "Goodbye! Have a great day!";
+    private static final String NO_MORE_INPUT_MESSAGE = "No more input available.";
+    private static final String LOGO = """
+              _____        _       \s
+             |_   _| _ ___| |___  _\s
+               | || '_/ -_) / / || |
+               |_||_| \\___|_\\_\\\\_, |
+                               |__/\s
+            """;
 
     /**
      * Constructs a Ui object.
@@ -21,7 +32,7 @@ public class Ui {
     public String readInput() throws IllegalStateException {
         System.out.print("> ");
         if (!sc.hasNextLine()) {
-            throw new IllegalStateException("No more input available.");
+            throw new IllegalStateException(NO_MORE_INPUT_MESSAGE);
         }
         return sc.nextLine();
     }
@@ -32,10 +43,10 @@ public class Ui {
      * @param message The result of the command.
      */
     public void showResult(String message) {
-        showLine();
+        System.out.println(DIVIDER);
         if (!message.equals("bye")) {
             System.out.println(message);
-            showLine();
+            System.out.println(DIVIDER);
         }
     }
 
@@ -46,32 +57,21 @@ public class Ui {
      */
     public void showError(String message) {
         System.out.println("Error: " + message);
-        showLine();
+        System.out.println(DIVIDER);
     }
 
     /** Shows the welcome message. */
     public void showWelcome() {
-        String logo = """
-              _____        _       \s
-             |_   _| _ ___| |___  _\s
-               | || '_/ -_) / / || |
-               |_||_| \\___|_\\_\\\\_, |
-                               |__/\s
-            """;
-        System.out.println(logo);
-        showLine();
-        System.out.println("Hello! I'm Treky\nWhat can I do for you?");
-        showLine();
+        System.out.println(LOGO);
+        System.out.println(DIVIDER);
+        System.out.println(WELCOME_MESSAGE);
+        System.out.println(DIVIDER);
     }
 
     /** Shows the goodbye message. */
     public void showGoodbye() {
         sc.close();
-        System.out.println("Goodbye! Have a great day!");
-        showLine();
-    }
-
-    private void showLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println(GOODBYE_MESSAGE);
+        System.out.println(DIVIDER);
     }
 }
