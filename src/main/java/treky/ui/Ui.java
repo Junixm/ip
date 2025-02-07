@@ -1,4 +1,4 @@
-package treky;
+package treky.ui;
 
 import java.util.Scanner;
 
