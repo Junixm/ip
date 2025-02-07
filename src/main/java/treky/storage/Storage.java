@@ -29,13 +29,11 @@ public class Storage {
      */
     public Storage(String filePath) throws TrekyFatalException {
         this.filePath = Paths.get(filePath);
-        if (!isValidPath(this.filePath)) {
-            throw new TrekyFatalException("Storage file should end with .txt");
+        try {
+            Files.createDirectories(this.filePath.getParent());
+        } catch (IOException e) {
+            throw new TrekyFatalException("Error creating directories for file: " + filePath);
         }
-    }
-
-    private static boolean isValidPath(Path path) {
-        return path.toString().endsWith(".txt");
     }
 
     /**
