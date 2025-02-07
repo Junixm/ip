@@ -1,62 +1,53 @@
 package treky;
 
+import treky.task.TaskList;
+import treky.ui.Ui;
 import treky.command.CommandHandler;
 import treky.storage.Storage;
-import treky.command.TaskManager;
 import treky.exception.TrekyException;
-import treky.ui.Ui;
+import treky.exception.TrekyFatalException;
 
 public class Treky {
-    private final Ui ui;
+    // Adapted from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/Main.java
+    private Ui ui;
+    private Storage storage;
+    private TaskList taskList;
     private CommandHandler commandHandler;
-    private boolean isExit;
 
-    /**
-     * Constructs a Treky object.
-     *
-     * @param filePath The file path of the storage file.
-     */
-    public Treky(String filePath) {
-        this.ui = new Ui();
-        this.isExit = false;
-        try {
-            Storage storage = new Storage(filePath);
-            storage.initStorage();
-            TaskManager taskManager = new TaskManager(storage.loadTasks());
-            this.commandHandler = new CommandHandler(taskManager, storage);
-        } catch (TrekyException e) {
-            ui.showError(e.getMessage());
-            isExit = true;
-        }
-    }
-
-    /** Runs the Treky program.*/
-    public void run() {
-        if (!isExit) {
-            ui.showWelcome();
-        }
-        while (!isExit) {
-            try {
-                String input = ui.readInput();
-                String result = commandHandler.parse(input);
-                ui.showResult(result);
-                isExit = commandHandler.getExit();
-            } catch (IllegalStateException e) {
-                ui.showError(e.getMessage());
-                isExit = true;
-            } catch (TrekyException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-        ui.showGoodbye();
-    }
-
-    /**
-     * The main method of the Treky program.
-     *
-     * @param args The command line arguments.
-     */
     public static void main(String[] args) {
-        new Treky("./data/tasks.txt").run();
+        new Treky().run();
     }
+
+    /** Constructs a Treky object.*/
+    public Treky() {
+        try {
+            this.ui = new Ui();
+            this.storage = new Storage();
+            this.taskList = storage.load();
+            this.commandHandler = new CommandHandler(taskList);
+            ui.showWelcome();
+        } catch (TrekyFatalException e) {
+            ui.showError(e.getMessage());
+            System.exit(1);
+        }
+    }
+
+   private void run() {
+       boolean isExit = false;
+       while (!isExit) {
+           try {
+               String input = ui.readInput();
+               String result = commandHandler.parse(input);
+               ui.showResult(result);
+               isExit = commandHandler.getExit();
+               storage.save(taskList);
+           } catch (TrekyException e) {
+               ui.showError(e.getMessage());
+           } catch (TrekyFatalException e) {
+               ui.showError(e.getMessage());
+               System.exit(1);
+           }
+       }
+       ui.showGoodbye();
+   }
 }
