@@ -1,5 +1,8 @@
-package treky;
+package treky.exception;
 
+/**
+ * Represents an exception in Treky.
+ */
 public class TrekyException extends Exception {
     /**
      * Constructs a TrekyException.
