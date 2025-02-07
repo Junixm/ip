@@ -1,7 +1,7 @@
 package treky.command;
 
 import org.junit.jupiter.api.Test;
-import treky.TrekyException;
+import treky.exception.TrekyException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
