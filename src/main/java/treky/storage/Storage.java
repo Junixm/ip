@@ -1,4 +1,4 @@
-package treky.command;
+package treky.storage;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileWriter;
 
-import treky.TrekyException;
+import treky.exception.TrekyException;
 import treky.task.Task;
 import treky.task.Todo;
 import treky.task.Deadline;
