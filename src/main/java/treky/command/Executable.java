@@ -1,5 +1,7 @@
 package treky.command;
 
+import treky.exception.TrekyException;
+
 /**
  * Represents a command to be executed by the CommandHandler.
  */
@@ -9,5 +11,5 @@ public interface Executable {
      *
      * @return The result of the command.
      */
-    public String execute();
+    public String execute() throws TrekyException;
 }
