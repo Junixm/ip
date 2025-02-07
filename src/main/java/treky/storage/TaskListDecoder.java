@@ -12,10 +12,9 @@ import treky.task.Event;
 
 /**
  * Decodes the data from the storage file into a {@code TaskList} object.
- * Adapted from AddressBook2.
  */
 public class TaskListDecoder {
-
+    // Adapted from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
     /**
      * Decodes the data from the storage file into a {@code TaskList} object.
      *

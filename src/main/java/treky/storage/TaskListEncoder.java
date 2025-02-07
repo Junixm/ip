@@ -7,10 +7,9 @@ import treky.task.TaskList;
 
 /**
  * Encodes the {@code TaskList} object into a data file for storage.
- * Adapted from AddressBook2.
  */
 public class TaskListEncoder {
-
+    // Adapted from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookEncoder.java
     /**
      * Encodes the {@code TaskList} object into a list of strings for storage.
      *

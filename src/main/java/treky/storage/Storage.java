@@ -11,10 +11,9 @@ import treky.task.TaskList;
 
 /**
  * Represents the file used to store tasks data.
- * Adapted from AddressBook2.
  */
 public class Storage {
-
+    // Adapted from https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java
     public static final String DEFAULT_FILE_PATH = "./data/tasks.txt";
 
     private final Path filePath;
