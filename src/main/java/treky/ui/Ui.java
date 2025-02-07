@@ -44,7 +44,7 @@ public class Ui {
      */
     public void showResult(String message) {
         System.out.println(DIVIDER);
-        if (!message.equals("bye")) {
+        if (!message.isEmpty()) {
             System.out.println(message);
             System.out.println(DIVIDER);
         }
