@@ -4,10 +4,10 @@ import treky.task.TaskList;
 import treky.exception.TrekyException;
 
 public class CommandHandler {
-    private final TaskList taskList;
-    private static boolean isExit = false;
     private static final String UNKNOWN_COMMAND_MESSAGE = "I'm sorry, but I don't know what that means :-(";
     private static final String EMPTY_INPUT_MESSAGE = "You didn't enter anything!\nHow can I help you?";
+    private final TaskList taskList;
+    private static boolean isExit = false;
 
     /**
      * Constructs a CommandHandler object with the specified TaskManager and Storage.

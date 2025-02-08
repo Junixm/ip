@@ -2,7 +2,7 @@ package treky.ui;
 
 import java.util.Scanner;
 
-public class Ui {
+public class TextUi {
     private final Scanner sc;
     private static final String DIVIDER = "____________________________________________________________";
     private static final String WELCOME_MESSAGE = "Hello! I'm Treky\nWhat can I do for you?";
@@ -19,7 +19,7 @@ public class Ui {
     /**
      * Constructs a Ui object.
      */
-    public Ui() {
+    public TextUi() {
         this.sc = new Scanner(System.in);
     }
 
@@ -44,7 +44,7 @@ public class Ui {
      */
     public void showResult(String message) {
         System.out.println(DIVIDER);
-        if (!message.isEmpty()) {
+        if (!message.equals(GOODBYE_MESSAGE)) {
             System.out.println(message);
             System.out.println(DIVIDER);
         }
@@ -62,10 +62,14 @@ public class Ui {
 
     /** Shows the welcome message. */
     public void showWelcome() {
-        System.out.println(LOGO);
         System.out.println(DIVIDER);
         System.out.println(WELCOME_MESSAGE);
         System.out.println(DIVIDER);
+    }
+
+    /** Shows the logo. */
+    public void showLogo() {
+        System.out.println(LOGO);
     }
 
     /** Shows the goodbye message. */
