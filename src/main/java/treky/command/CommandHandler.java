@@ -2,12 +2,13 @@ package treky.command;
 
 import treky.task.TaskList;
 import treky.exception.TrekyException;
-import treky.task.Todo;
+
 
 public class CommandHandler {
     private static final String UNKNOWN_COMMAND_MESSAGE = "I'm sorry, but I don't know what that means :-(";
     private static final String EMPTY_INPUT_MESSAGE = "You didn't enter anything!\nHow can I help you?";
     private final TaskList taskList;
+    private final Alias alias;
     private static boolean isExit = false;
 
     /**
@@ -18,6 +19,7 @@ public class CommandHandler {
      */
     public CommandHandler(TaskList taskList) {
         this.taskList = taskList;
+        this.alias = new Alias();
     }
 
     /**
@@ -44,7 +46,7 @@ public class CommandHandler {
         }
 
         String[] parts = splitInput(input);
-        String command = parts[0];
+        String command = alias.resolve(parts[0]);
         String arguments = parts[1];
         return prepareCommand(command, arguments);
     }
@@ -67,6 +69,7 @@ public class CommandHandler {
         case "mark" -> new MarkCommand(description, taskList, true).execute();
         case "unmark" -> new MarkCommand(description, taskList, false).execute();
         case "find" -> new FindCommand(description, taskList).execute();
+        case "alias" -> new AddAlias(description, alias).execute();
         default -> throw new TrekyException(UNKNOWN_COMMAND_MESSAGE);
         };
     }
