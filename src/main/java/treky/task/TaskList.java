@@ -14,7 +14,7 @@ public class TaskList {
      * Constructs a TaskList object with an empty task list.
      */
     public TaskList() {
-        this(new ArrayList<>());
+        this.taskList = new ArrayList<>();
     }
 
     /**
@@ -23,6 +23,7 @@ public class TaskList {
      * @param taskList The task list to be used.
      */
     public TaskList(List<Task> taskList) {
+        assert taskList != null : "Task list cannot be null";
         this.taskList = new ArrayList<>(taskList);
     }
 
@@ -60,6 +61,7 @@ public class TaskList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
+        assert task != null : "Task cannot be null";
         taskList.add(task);
     }
 
@@ -83,6 +85,7 @@ public class TaskList {
      */
     public Task markTask(int index) throws IndexOutOfBoundsException {
         Task task = taskList.get(index);
+        assert task != null : "Task cannot be null";
         task.setDone(true);
         return task;
     }
@@ -96,6 +99,7 @@ public class TaskList {
      */
     public Task unmarkTask(int index) throws IndexOutOfBoundsException {
         Task task = taskList.get(index);
+        assert task != null : "Task cannot be null";
         task.setDone(false);
         return task;
     }

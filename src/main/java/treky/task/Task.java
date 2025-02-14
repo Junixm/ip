@@ -14,6 +14,8 @@ public class Task {
      * @param isDone Status of task.
      */
     public Task(String description, boolean isDone) {
+        assert description != null : "Task description cannot be null";
+        assert !description.isBlank() : "Task description cannot be empty";
         this.description = description;
         this.isDone = isDone;
     }

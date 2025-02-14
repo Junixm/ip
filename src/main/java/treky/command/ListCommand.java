@@ -16,6 +16,8 @@ public class ListCommand implements Executable {
      * @param taskList The TaskList object to manage tasks.
      */
     public ListCommand(TaskList taskList) {
+        assert taskList != null : "TaskList cannot be null";
+
         this.taskList = taskList;
     }
 
