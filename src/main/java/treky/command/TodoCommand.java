@@ -31,6 +31,7 @@ public class TodoCommand implements Executable {
         if (description.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+        
         this.task = new Todo(description);
         this.taskList = taskList;
     }

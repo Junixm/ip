@@ -37,12 +37,14 @@ public class EventCommand implements Executable{
         if (parts.length != 3) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         String trimDescription = parts[0].trim();
         String from = parts[1].trim();
         String to = parts[2].trim();
         if (trimDescription.isEmpty() || from.isEmpty() || to.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         try {
             this.task = new Event(trimDescription, LocalDate.parse(from), LocalDate.parse(to));
             this.taskList = taskList;

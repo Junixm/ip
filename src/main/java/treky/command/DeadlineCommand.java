@@ -36,11 +36,13 @@ public class DeadlineCommand implements Executable {
         if (parts.length != 2) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         String trimDescription = parts[0].trim();
         String by = parts[1].trim();
         if (trimDescription.isEmpty() || by.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         try {
             this.task = new Deadline(trimDescription, LocalDate.parse(by));
             this.taskList = taskList;

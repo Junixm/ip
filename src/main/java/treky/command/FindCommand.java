@@ -31,6 +31,7 @@ public class FindCommand implements Executable {
         if (description.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         this.keyword = description;
         this.taskList = taskList;
     }
@@ -43,10 +44,12 @@ public class FindCommand implements Executable {
         if (tasks.isEmpty()) {
             return String.format(NO_MATCH_MESSAGE, keyword);
         }
+
         StringBuilder result = new StringBuilder(SUCCESS_MESSAGE);
         for (int i = 0; i < tasks.size(); i++) {
             result.append("\n").append(i + 1).append(". ").append(tasks.get(i));
         }
+
         return result.toString();
     }
 }

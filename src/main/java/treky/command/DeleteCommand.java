@@ -33,11 +33,13 @@ public class DeleteCommand implements Executable {
         if (description.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
+
         try {
             this.index = Integer.parseInt(description) - 1;
         } catch (NumberFormatException e) {
             throw new TrekyException(NOT_A_NUMBER_MESSAGE + FORMAT_MESSAGE);
         }
+
         this.taskList = taskList;
     }
 
