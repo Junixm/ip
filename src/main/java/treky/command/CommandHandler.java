@@ -2,6 +2,7 @@ package treky.command;
 
 import treky.task.TaskList;
 import treky.exception.TrekyException;
+import treky.task.Todo;
 
 public class CommandHandler {
     private static final String UNKNOWN_COMMAND_MESSAGE = "I'm sorry, but I don't know what that means :-(";
@@ -31,25 +32,31 @@ public class CommandHandler {
     /**
      * Parses the input string and executes the corresponding command.
      *
-     * @param rawInput input string to be parsed.
+     * @param input input string to be parsed.
      * @return result of the command execution.
      * @throws TrekyException if the input is empty or the command is invalid.
      */
-    public String parse(String rawInput) throws TrekyException {
-        assert rawInput != null : "Input cannot be null";
+    public String parse(String input) throws TrekyException {
+        assert input != null : "Input cannot be null";
 
-        String input = rawInput.trim();
-        if (input.isEmpty()) {
+        if (input.isBlank()) {
             throw new TrekyException(EMPTY_INPUT_MESSAGE);
         }
 
-        String[] parts = input.split(" ", 2);
-        String command = parts[0].trim();
-        String arguments = (parts.length > 1) ? parts[1].trim() : "";
-        return prepare(command.toLowerCase(), arguments);
+        String[] parts = splitInput(input);
+        String command = parts[0];
+        String arguments = parts[1];
+        return prepareCommand(command, arguments);
     }
 
-    private String prepare(String command, String description) throws TrekyException {
+    private String[] splitInput(String input) {
+        String[] parts = input.trim().split(" ", 2);
+        String command = parts[0].trim().toLowerCase();
+        String arguments = (parts.length > 1) ? parts[1].trim() : "";
+        return new String[] {command, arguments};
+    }
+
+    private String prepareCommand(String command, String description) throws TrekyException {
         return switch (command) {
         case "bye" -> setExit();
         case "todo" -> new TodoCommand(description, taskList).execute();

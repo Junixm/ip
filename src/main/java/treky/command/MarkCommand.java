@@ -34,11 +34,13 @@ public class MarkCommand implements Executable {
         if (description.isEmpty()) {
             throw new TrekyException(NO_NUMBER_MESSAGE + FORMAT_MESSAGE);
         }
+
         try {
             this.index = Integer.parseInt(description) - 1;
         } catch (NumberFormatException e) {
             throw new TrekyException(NOT_A_NUMBER_MESSAGE + FORMAT_MESSAGE);
         }
+
         this.taskList = taskList;
         this.isDone = isDone;
     }
@@ -49,9 +51,10 @@ public class MarkCommand implements Executable {
             if (isDone) {
                 Task task = taskList.markTask(index);
                 return String.format(SUCCESS_MARK_MESSAGE, task);
+            } else {
+                Task task = taskList.unmarkTask(index);
+                return String.format(SUCCESS_UNMARK_MESSAGE, task);
             }
-            Task task = taskList.unmarkTask(index);
-            return String.format(SUCCESS_UNMARK_MESSAGE, task);
         } catch (IndexOutOfBoundsException e) {
             throw new TrekyException(OUT_OF_BOUND_MESSAGE + FORMAT_MESSAGE);
         }

@@ -26,10 +26,12 @@ public class ListCommand implements Executable {
         if (taskList.getTaskListSize() == 0) {
             return EMPTY_LIST_MESSAGE;
         }
+
         StringBuilder sb = new StringBuilder(LIST_MESSAGE);
         for (int i = 0; i < taskList.getTaskListSize(); i++) {
             sb.append("\n").append(i + 1).append(". ").append(taskList.getTask(i));
         }
+
         return sb.toString();
     }
 }
