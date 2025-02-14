@@ -55,7 +55,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getTrekyDialog(Label label, Image img) {
         var db = new DialogBox(label, img);
-        db.getStyleClass().add("reply-label");
+        db.dialog.getStyleClass().add("reply-label");
         db.flip();
         return db;
     }
