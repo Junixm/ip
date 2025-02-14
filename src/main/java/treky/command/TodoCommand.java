@@ -25,6 +25,9 @@ public class TodoCommand implements Executable {
      * @throws TrekyException If the description is empty.
      */
     public TodoCommand(String description, TaskList taskList) throws TrekyException {
+        assert description != null : "Description cannot be null";
+        assert taskList != null : "TaskList cannot be null";
+
         if (description.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
@@ -34,6 +37,8 @@ public class TodoCommand implements Executable {
 
     @Override
     public String execute() {
+        assert task != null : "Task cannot be null";
+
         taskList.addTask(task);
         return String.format(SUCCESS_MESSAGE, task, taskList.getTaskListSize());
     }
