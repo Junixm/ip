@@ -30,6 +30,9 @@ public class EventCommand implements Executable{
      * @throws TrekyException If the description or date is empty or the date is in an invalid format.
      */
     public EventCommand(String description, TaskList taskList) throws TrekyException {
+        assert description != null : "Description cannot be null";
+        assert taskList != null : "TaskList cannot be null";
+
         String[] parts = description.split("/from|/to");
         if (parts.length != 3) {
             throw new TrekyException(FORMAT_MESSAGE);
@@ -50,6 +53,8 @@ public class EventCommand implements Executable{
 
     @Override
     public String execute() {
+        assert task != null : "Task cannot be null";
+
         taskList.addTask(task);
         return String.format(SUCCESS_MESSAGE, task, taskList.getTaskListSize());
     }

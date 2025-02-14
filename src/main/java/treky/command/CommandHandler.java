@@ -36,10 +36,13 @@ public class CommandHandler {
      * @throws TrekyException if the input is empty or the command is invalid.
      */
     public String parse(String rawInput) throws TrekyException {
+        assert rawInput != null : "Input cannot be null";
+
         String input = rawInput.trim();
         if (input.isEmpty()) {
             throw new TrekyException(EMPTY_INPUT_MESSAGE);
         }
+
         String[] parts = input.split(" ", 2);
         String command = parts[0].trim();
         String arguments = (parts.length > 1) ? parts[1].trim() : "";

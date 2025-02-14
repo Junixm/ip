@@ -25,6 +25,9 @@ public class FindCommand implements Executable {
      * @throws TrekyException If the keyword is empty.
      */
     public FindCommand(String description, TaskList taskList) throws TrekyException {
+        assert description != null : "Description cannot be null";
+        assert taskList != null : "TaskList cannot be null";
+
         if (description.isEmpty()) {
             throw new TrekyException(FORMAT_MESSAGE);
         }
@@ -34,6 +37,8 @@ public class FindCommand implements Executable {
 
     @Override
     public String execute() throws TrekyException {
+        assert keyword != null : "Keyword cannot be null";
+
         List<Task> tasks = taskList.findTasks(keyword);
         if (tasks.isEmpty()) {
             return String.format(NO_MATCH_MESSAGE, keyword);
