@@ -29,6 +29,9 @@ public class DeadlineCommand implements Executable {
      * @throws TrekyException If the description or date is empty or the date is in an invalid format.
      */
     public DeadlineCommand(String description, TaskList taskList) throws TrekyException {
+        assert description != null : "Description cannot be null";
+        assert taskList != null : "TaskList cannot be null";
+
         String[] parts = description.split("/by");
         if (parts.length != 2) {
             throw new TrekyException(FORMAT_MESSAGE);
@@ -48,6 +51,8 @@ public class DeadlineCommand implements Executable {
 
     @Override
     public String execute() {
+        assert task != null : "Task cannot be null";
+
         taskList.addTask(task);
         return String.format(SUCCESS_MESSAGE, task, taskList.getTaskListSize());
     }

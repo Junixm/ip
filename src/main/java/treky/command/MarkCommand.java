@@ -28,6 +28,9 @@ public class MarkCommand implements Executable {
      * @throws TrekyException If the description is empty, not a number, or out of bounds.
      */
     public MarkCommand(String description, TaskList taskList, boolean isDone) throws TrekyException {
+        assert description != null : "Description cannot be null";
+        assert taskList != null : "TaskList cannot be null";
+
         if (description.isEmpty()) {
             throw new TrekyException(NO_NUMBER_MESSAGE + FORMAT_MESSAGE);
         }

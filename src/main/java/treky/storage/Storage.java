@@ -49,6 +49,7 @@ public class Storage {
         } catch (IOException e) {
             throw new TrekyFatalException("Error writing to file: " + filePath);
         }
+        assert Files.exists(filePath) : "File should exist after saving";
     }
 
     /**
