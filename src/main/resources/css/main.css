@@ -44,3 +44,7 @@
     -fx-pref-height: 0;
     -fx-opacity: 0;
 }
+
+.headerBox {
+    -fx-background-color: #bfe6c8;
+}
