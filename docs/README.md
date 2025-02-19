@@ -11,11 +11,11 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 4. Run the application using this command `java -jar Treky.jar`
 5. Application will launch if no issues is detected. You will see the Treky logo on the cli as well as the application popup.
 ```
-  _____        _        
- |_   _| _ ___| |___  _ 
-   | || '_/ -_) / / || |
-   |_||_| \___|_\_\\_, |
-                   |__/ 
+|  _____        _        
+| |_   _| _ ___| |___  _ 
+|   | || '_/ -_) / / || |
+|   |_||_| \___|_\_\\_, |
+|                   |__/ 
 ```
 
 ## Features
