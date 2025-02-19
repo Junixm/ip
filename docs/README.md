@@ -25,11 +25,11 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 
 ### 2. Deadline
 - Adds a task with a due date.
-- Format: `deadline <description> /by <YYYY-MM-DD>`
+- Format: `deadline <description> /by <yyyy-MM-dd>`
 
 ### 3. Event
 - Adds an event with a scheduled start and end date.
-- Format: `todo <description> /from <YYYY-MM-DD> /to <YYYY-MM-DD>`
+- Format: `todo <description> /from <yyyy-MM-dd> /to <yyyy-MM-dd>`
 
 ### 4. Find
 - Search for tasks containing a specific keywords.
@@ -46,5 +46,10 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 
 ### 5. Alias
 - Adds a custom alias for a task command.
-- Your custom shortcuts will not be saved after exiting (WIP).
 - Format: `alias <shortcut> <full_command>`
+
+> [!NOTE]
+> - Command names are non-case sensitive (both `todo`, `toDo` works).
+> - Separator commands are case sensitive (use `/by`, `/to`, `from`).
+> - Date must follow this format: `yyyy-MM-dd`.
+> - Your custom shortcuts will not be saved after exiting.
