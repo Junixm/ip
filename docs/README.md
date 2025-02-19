@@ -45,6 +45,6 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 - Format: `unmark <task_number>`
 
 ### 5. Alias
-- Adds a custome alias for a task command.
+- Adds a custom alias for a task command.
 - Your custom shortcuts will not be saved after exiting (WIP).
 - Format: `alias <shortcut> <full_command>`
