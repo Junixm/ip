@@ -2,7 +2,7 @@
 
 Treky is a graphical user interface (GUI) task manager bot designed to help you organize your tasks efficiently. It supports various features to manage your to-dos, deadlines and events while providing easy way to track and find tasks.
 
-![Treky UI](Ui.png)
+![Treky UI](https://github.com/Junixm/ip/blob/master/docs/Ui.png)
 
 ## Getting Started
 1. Ensure that you have Java 17 or above installed.
