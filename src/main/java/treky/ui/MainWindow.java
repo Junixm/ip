@@ -9,9 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import treky.Treky;
 
@@ -27,22 +29,32 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private ImageView profileImage;
 
     private Treky treky;
-
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image trekyImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        // Set profile image
+        Image profilePic = new Image(this.getClass().getResourceAsStream("/images/Treky.png"));
+        profileImage.setImage(profilePic);
+
+        // Apply circular clipping to profile image
+        double radius = Math.min(profileImage.getFitWidth(), profileImage.getFitHeight()) / 2;
+        Circle clip = new Circle(radius);
+        clip.setCenterX(profileImage.getFitWidth() / 2);
+        clip.setCenterY(profileImage.getFitHeight() / 2);
+        profileImage.setClip(clip);
     }
 
     /** Injects the Treky instance */
     public void setTreky(Treky treky) {
         this.treky = treky;
         Label welcomeLabel = new Label(treky.getWelcomeMessage());
-        dialogContainer.getChildren().add(DialogBox.getTrekyDialog(welcomeLabel, trekyImage));
+        dialogContainer.getChildren().add(DialogBox.getTrekyDialog(welcomeLabel));
     }
 
     /**
@@ -54,8 +66,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = treky.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(new Label(input), userImage),
-                DialogBox.getTrekyDialog(new Label(response), trekyImage)
+                DialogBox.getUserDialog(new Label(input)),
+                DialogBox.getTrekyDialog(new Label(response))
         );
         userInput.clear();
 
@@ -71,7 +83,7 @@ public class MainWindow extends AnchorPane {
                 new KeyFrame(Duration.seconds(2), e -> dialogLabel.setText("Exiting in 1")),
                 new KeyFrame(Duration.seconds(3), e -> Platform.exit())
         );
-        dialogContainer.getChildren().add(DialogBox.getTrekyDialog(dialogLabel, trekyImage));
+        dialogContainer.getChildren().add(DialogBox.getTrekyDialog(dialogLabel));
         countdown.play();
     }
 }

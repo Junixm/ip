@@ -10,8 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
@@ -21,10 +19,8 @@ import javafx.scene.layout.HBox;
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
-    @FXML
-    private ImageView displayPicture;
 
-    public DialogBox(Label label, Image img) {
+    public DialogBox(Label label) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -35,7 +31,6 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(label.getText());
-        displayPicture.setImage(img);
         dialog.textProperty().bind(label.textProperty());
     }
 
@@ -49,12 +44,12 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
-    public static DialogBox getUserDialog(Label label, Image img) {
-        return new DialogBox(label, img);
+    public static DialogBox getUserDialog(Label label) {
+        return new DialogBox(label);
     }
 
-    public static DialogBox getTrekyDialog(Label label, Image img) {
-        var db = new DialogBox(label, img);
+    public static DialogBox getTrekyDialog(Label label) {
+        var db = new DialogBox(label);
         db.dialog.getStyleClass().add("reply-label");
         db.flip();
         return db;
