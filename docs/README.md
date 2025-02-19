@@ -50,6 +50,7 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 
 > [!NOTE]
 > - Command names are non-case sensitive (both `todo`, `toDo` works).
-> - Separator commands are case sensitive (use `/by`, `/to`, `from`).
+> - Separator commands are case sensitive (use `/by`, `/to`, `/from`).
+> - Type the command name alone to show the format.
 > - Date must follow this format: `yyyy-MM-dd`.
 > - Your custom shortcuts will not be saved after exiting.
