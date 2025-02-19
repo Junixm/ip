@@ -5,7 +5,7 @@ import treky.exception.TrekyException;
 /**
  * Adds an alias to the alias map.
  */
-public class AddAlias implements Executable {
+public class AliasCommand implements Executable {
     private static final String FORMAT_MESSAGE = "Format: alias <shortcut> <command>";
     private static final String SUCCESS_MESSAGE = "Alias added: %s -> %s";
     private static final String ALIAS_EXISTS_MESSAGE = "Alias already exists: %s -> %s";
@@ -21,7 +21,7 @@ public class AddAlias implements Executable {
      * @param alias The Alias object to manage aliases.
      * @throws TrekyException If the description is empty or the format is invalid.
      */
-    public AddAlias(String description, Alias alias) throws TrekyException {
+    public AliasCommand(String description, Alias alias) throws TrekyException {
         String[] parts = description.split(" ", 2);
         if (parts.length != 2) {
             throw new TrekyException(FORMAT_MESSAGE);

@@ -69,7 +69,7 @@ public class CommandHandler {
         case "mark" -> new MarkCommand(description, taskList, true).execute();
         case "unmark" -> new MarkCommand(description, taskList, false).execute();
         case "find" -> new FindCommand(description, taskList).execute();
-        case "alias" -> new AddAlias(description, alias).execute();
+        case "alias" -> new AliasCommand(description, alias).execute();
         default -> throw new TrekyException(UNKNOWN_COMMAND_MESSAGE);
         };
     }
