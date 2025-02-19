@@ -8,7 +8,7 @@ Treky is a graphical user interface (GUI) task manager bot designed to help you 
 1. Ensure that you have Java 17 or above installed.
 2. Download the latest `.jar` file from [here](https://github.com/Junixm/ip/releases).
 3. Copy the file to the folder you want to put the jar file in.
-4. Run the application using this command `java -jar Treky.jar`
+4. Run the application using this command `java -jar treky.jar`
 5. Application will launch if no issues is detected. You will see the Treky logo on the cli as well as the application popup.
 ```
 |  _____        _        
